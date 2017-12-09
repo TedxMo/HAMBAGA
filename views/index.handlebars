@@ -1,0 +1,43 @@
+
+
+
+<div class="container ">
+	<div class="row">
+		<h3 id="label" class=" col-sm-6 text-right">Enter a burger</h3>
+		<form class=" col-sm-2">
+			<div class="form-group text-center">
+				<div class="bubble">
+					<textarea name="burger" class="" rows="2" id="burger" autofocus></textarea>
+				</div>
+				<input type="submit" value="Submit" id="submit" class="btn btn-danger " class="form-control">
+			</div>
+		</form>
+
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<h3 class="sectionTitle ">Burger Queue:</h3>
+			{{#each burgers}}
+				{{#unless devoured}}
+					<div class="burger">
+					<p>{{this.id}}. {{burger_name}}<button class="devour btn btn-danger" id="{{this.id}}">Devour it!</button></p>
+
+					</div>
+				{{/unless}}
+			{{/each}}
+		</div>
+
+		<div class="col-sm-6">
+			<h3 class="sectionTitle text-center">Devoured Burgers:</h3>
+			{{#each burgers}}
+				{{#if devoured}}
+					<div class="devoured burger  text-center">
+						<p>{{burger_name}}</p>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+	</div>
+	
+</div>
+

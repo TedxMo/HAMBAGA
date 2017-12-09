@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>EAT!</title>
+	<link href="https://fonts.googleapis.com/css?family=Bigelow+Rules|Nothing+You+Could+Do" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+	{{{body}}}
+
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+	<script>
+
+	function createBurger(burger) {
+		var input = burger || $('#burger').val().trim();
+		$('#burger').val('');
+		$('#burger').attr('placeholder', '');
+		var burger = {};
+		burger.burger_name = input;
+		$.post('/api/burger', burger).then(function (response) {
+			location.reload();
+		});	
+	}
+	$('#submit').on('click', function (event) {
+		event.preventDefault();
+		createBurger();
+	});
+
+	$(document).on('click', '.devour', function (event) {
+		event.preventDefault();
+		var id = $(this).attr('id');
+		console.log(id)
+		$.ajax('/api/'+id, {
+			type: 'PUT'
+		}).then(function () {
+			location.reload();
+		});
+	});
+	</script>
+</body>
+</html>
